@@ -42,7 +42,7 @@ def found_goal(states, goal):
     return False
 
 
-def dfs(state: Node, max_depth: int = 1000, goal: int = 2, logs: bool = False):
+def bfs(state: Node, max_depth: int = 1000, goal: int = 2, logs: bool = False):
     states = [state]
 
     graph = Graph()
@@ -70,14 +70,11 @@ def dfs(state: Node, max_depth: int = 1000, goal: int = 2, logs: bool = False):
 
 
 if __name__ == "__main__":
-    print("--- DFS ---")
-
-    graph, depth = dfs(Node((0, 0), (0, 0), "start"))
-
+    print("--- BFS ---")
+    graph, depth = bfs(Node((0, 0), (0, 0), "start"))
     goals = []
     for i in range(0, 4):
         [goals.append(x) for x in graph.find_goals_depth((2, i), depth)]
-
     for goal in goals:
         print("For goal:", goal.final)
         path = graph.path(goal)
