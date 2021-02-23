@@ -69,6 +69,38 @@ def bfs(state: Node, max_depth: int = 1000, goal: int = 2, logs: bool = False):
             return graph, depth + 1
 
 
+def dfs(state: Node, max_depth: int = 25, goal: int = 2, logs: bool = False):
+    tree = Graph()
+    stack = [state]
+
+    visited = []
+    tree.add_level()
+    tree.add_node(state, 1)
+
+    depth = 1
+    while depth != max_depth and len(stack) != 0:
+        tree.add_level()
+        node = stack.pop(0)
+        visited.append(node.initial)
+
+        if logs: print("current node:", node.final)
+        if node.final[0] == goal:
+            if logs: print("Found Goal. Depth:", depth + 1)
+            goals = []
+            for i in range(0, 4):
+                [goals.append(x) for x in graph.find_goals_depth((2, i), depth)]
+            for _goal in goals:
+                print("For goal:", _goal.final)
+                _path = graph.path(_goal)
+                print_solution(path)
+        else:
+            expanded = expand(node)
+            [tree.add_node(x, depth + 1) for x in expanded]
+            [stack.insert(0, x) for x in expanded if x.final not in visited]
+        depth += 1
+    return graph, depth
+
+
 if __name__ == "__main__":
     print("--- BFS ---")
     graph, depth = bfs(Node((0, 0), (0, 0), "start"))
@@ -79,4 +111,8 @@ if __name__ == "__main__":
         print("For goal:", goal.final)
         path = graph.path(goal)
         print_solution(path)
+
+    print("--- DFS ---")
+    graph, depth = dfs(Node((0, 0), (0, 0), "start"))
+
 
