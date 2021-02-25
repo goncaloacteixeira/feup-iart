@@ -39,7 +39,4 @@ def expand(operation: State):
     if y > 0:
         expanded.append(State(operation.final, (x, 0), "Empty the 3L bucket"))
 
-    for state in expanded:
-        state.parent = operation
-
     return expanded
