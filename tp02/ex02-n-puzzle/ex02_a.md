@@ -62,7 +62,7 @@ we can design a few restrictions for the moves in a *pythonic* way:
 
 ```python
 if empty.x > 0 and empty.x < sqrt(N+1) - 1:
-   	if empty.y > 0 and empty.y < sqrt(N+1) - 1:
+    if empty.y > 0 and empty.y < sqrt(N+1) - 1:
         # it's on the middle, can move to the four sides
         move = moveUp | moveDown | moveLeft | moveRight
     elif empty.y == 0:
