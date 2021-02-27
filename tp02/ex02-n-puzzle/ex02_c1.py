@@ -44,7 +44,6 @@ def greedy(state: State, N: int):
     return None, tree
 
 
-# this will take TOOOO long :)
 if __name__ == "__main__":
     print("---- GREEDY -----")
 
